@@ -1,22 +1,25 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#gnavi">
-        <span class="sr-only">Bootstrap</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Bootstrap
-
-      </a>
-    </div>
-    <div id="gnavi" class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li><a href="">top</a></li>
-        <li><a href="">menu1</a></li>
-        <li><a href="">menu2</a></li>
-      </ul>
-    </div>
+<div id="left_navi">
+</div>
+<div id="content">
+  <div id="article_form">
+    <a>投稿を作成</a>
+    <a href="<% user_path %>" class="prof_icon">あ</a>
+    <%= form_with(model: @article, local: true ) do |form| %>
+      <%= form.text_area :content, placeholder:"今なにしてる？" %>
+      <%= form.submit "投稿する" class:"hiddenBtn" %>
+      <a class="article_submit">投稿する</a>
+    <% end %>
   </div>
-</nav>
+  <div id="logs">
+    <ul>
+    <% @articles.each do |log| %>
+    <li>
+      <div class="head">user:<%= @users.find_by(id: log.user_id).name %></div>
+      <div class="content">
+        <p class="comment"><%= log.content %></p>
+      </div>
+    </li>
+    <% end %>
+    </ul>
+  </div>
+</div>
