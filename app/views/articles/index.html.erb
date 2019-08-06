@@ -1,12 +1,13 @@
 <div id="left_navi">
 </div>
 <div id="content">
+  <div><%= current_user.name %></div>
   <div id="article_form">
     <a>投稿を作成</a>
-    <a href="<% user_path %>" class="prof_icon">あ</a>
+    <a href="" class="prof_icon">あ</a>
     <%= form_with(model: @article, local: true ) do |form| %>
       <%= form.text_area :content, placeholder:"今なにしてる？" %>
-      <%= form.submit "投稿する" class:"hiddenBtn" %>
+      <%= form.submit class:"hiddenBtn" %>
       <a class="article_submit">投稿する</a>
     <% end %>
   </div>
