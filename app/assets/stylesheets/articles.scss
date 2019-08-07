@@ -1,3 +1,88 @@
 // Place all the styles related to the articles controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#left_navi{
+  width: 20%;
+  height: 100%;
+  position:fixed;
+  top:52px;
+}
+#center_content{
+  width: 50%;
+  margin-left: 20%;
+  float: left;
+}
+
+#right_content{
+  width:30%;
+  float: left;
+  padding-left: 10px;
+}
+#right_content .box{
+  padding: 10px;
+}
+#right_content #r_bax1{
+  list-style: none;
+}
+
+#article_form form{
+  margin: 10px;
+}
+#article_form textarea{
+  width: 100%;
+  font-size: 2rem;
+  font-weight: normal;
+  border: none;
+  resize: none;
+}
+
+.field{
+  margin: 10px 0 0;
+  padding: 10px 0;
+  border-top: 1px solid #eeeeee;
+}
+.btn_submit{
+  display: block;
+  width: 100%;
+  padding: 5px;
+  color: #fff;
+  background-color: #4267b2;
+  border: none;
+  border-radius: 3px;
+}
+.btn_submit:hover{
+  background-color: #385898;
+}
+#logs ul{
+  list-style: none;
+  padding: 0;
+}
+#logs .box{
+  padding: 10px 0px 0px;
+}
+#logs .head{
+  color: #385898;
+  font-weight: bold;
+  border-bottom: 1px solid #eeeeee;
+  padding-bottom: 10px;
+  margin: 0 10px;
+}
+#logs .comment{
+  padding: 10px 10px;
+  margin: 0;
+}
+#logs .comment p{
+  margin: 0;
+}
+#logs .thumbnail{
+  background: transparent;
+  padding: 0;
+  margin: 0 0 10px;
+  border-radius: 0;
+  border: none;
+}
+
+#logs .thumbnail img{
+  width: 100%;
+}

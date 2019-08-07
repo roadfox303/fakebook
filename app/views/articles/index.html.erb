@@ -1,26 +1,63 @@
 <div id="left_navi">
+  <nav>
+    <ul>
+      <li>left navi 1</li>
+      <li>left navi 2</li>
+      <li>left navi 3</li>
+    </ul>
+  </nav>
 </div>
-<div id="content">
-  <div><%= current_user.name %></div>
-  <div id="article_form">
-    <a>投稿を作成</a>
-    <a href="" class="prof_icon">あ</a>
-    <%= form_with(model: @article, local: true ) do |form| %>
-      <%= form.text_area :content, placeholder:"今なにしてる？" %>
-      <%= form.submit class:"hiddenBtn" %>
-      <a class="article_submit">投稿する</a>
+<div id="center_content">
+  <div id="article_form" class="box">
+    <div class="column_title">投稿を作成</div>
+    <a href="" class="prof_icon"></a>
+    <%= form_with(model: @article, local: true, url:confirm_articles_path) do |form| %>
+      <%= form.text_area :content, placeholder:"#{current_user.name}さん - 今なにしてる？" %>
+      <% if @article.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@article.errors.count, "error") %> prohibited this feed from being saved:</h2>
+          <ul>
+          <% @article.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div class="field">
+        <%= form.label :image %>
+        <!-- 確認画面から新規作成画面に戻った時に、 -->
+        <!-- アップロードした画像を表示させるための記述 -->
+        <%= image_tag(@article.image.url) if @article.image && @article.image.url %>
+        <%= form.file_field :image %>
+        <%= form.hidden_field :image_cache %>
+      </div>
+      <%= form.submit "投稿する", class:"btn_submit" %>
     <% end %>
   </div>
+
   <div id="logs">
     <ul>
     <% @articles.each do |log| %>
-    <li>
-      <div class="head">user:<%= @users.find_by(id: log.user_id).name %></div>
-      <div class="content">
-        <p class="comment"><%= log.content %></p>
-      </div>
-    </li>
+      <li class="box">
+        <div class="head"><%= @users.find_by(id: log.user_id).name %></div>
+        <div class="content">
+          <div class="comment"><%= simple_format(log.content) %></div>
+          <% if log.image? %>
+          <div class="thumbnail">
+            <%= image_tag log.image.url %>
+          </div>
+          <% end %>
+        </div>
+      </li>
     <% end %>
     </ul>
   </div>
+</div>
+<div id="right_content">
+  <ul id="r_bax1" class="box">
+    <li>right navi 1</li>
+    <li>right navi 2</li>
+    <li>right navi 3</li>
+  </ul>
+  <div class="box">右カラム</div>
 </div>
