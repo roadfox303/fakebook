@@ -5,7 +5,7 @@
   <div id="article_form">
     <a>投稿を作成</a>
     <a href="" class="prof_icon"></a>
-    <%= form_with(model: @article, local: true ) do |form| %>
+    <%= form_with(model: @article, local: true, url:confirm_articles_path) do |form| %>
       <%= form.text_area :content, placeholder:"今なにしてる？" %>
       <% if @article.errors.any? %>
         <div id="error_explanation">
