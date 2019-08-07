@@ -12,7 +12,7 @@ class ArticlesController < ApplicationController
   end
   private
   def article_params
-    params.require(:article).permit(:id, :content)
+    params.require(:article).permit(:id, :content, :image, :image_cache, :remove_image)
   end
   def set_id
     @article = Article.find(params[:id])
