@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
   before_action :set_id, only: [:edit, :update, :show, :destroy]
   def index
     @users = User.all
-    @articles = Article.where user_id: current_user.id
+    @articles = Article.where(user_id: current_user.id).reverse
     @article = Article.new
   end
   def new
