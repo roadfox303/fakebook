@@ -109,15 +109,15 @@
   width: 50%;
   margin: 0 auto;
 }
-#img_field{
+#img_field,#img_field_edit{
   width:100%;
   height: auto;
   margin: 0 auto;
 }
-#img_field img{
+#img_field img,#img_field_edit img{
   width: 100%;
 }
-#img_field img:hover{
+#img_field_edit img:hover{
   cursor: pointer;
   opacity: 0.75;
 }

@@ -4,7 +4,7 @@
   <a href="" class="prof_icon"></a>
   <%= form_with(model: @article, local: true) do |form| %>
     <%= form.text_area :content, placeholder:"#{current_user.name}さん - 今なにしてる？" %>
-    <div id="img_field" onClick="$('#file').click()" >
+    <div id="img_field_edit" onClick="$('#file').click()" >
       <% if @article.image.url.present? %>
         <%= image_tag(@article.image.url) %>
       <% end %>
@@ -36,5 +36,6 @@ $(function() {
     })(file);
     reader.readAsDataURL(file);
   });
+  autosize($('textarea'));
 });
 </script>
