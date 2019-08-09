@@ -7,8 +7,6 @@
     <div id="img_field" onClick="$('#file').click()" >
       <% if @article.image.url.present? %>
         <%= image_tag(@article.image.url) %>
-      <% else %>
-        <i class="fas fa-image"></i><i class="fas fa-file-upload add"></i>
       <% end %>
     </div>
     <div class="field">

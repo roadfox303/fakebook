@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   def new
+    flash[:notice] = "ログインしました"
   end
 
   def create

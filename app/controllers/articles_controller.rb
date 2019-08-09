@@ -25,8 +25,8 @@ class ArticlesController < ApplicationController
     @article.user_id = current_user.id
     if params[:back]
       render :index
-    elsif @article.save
-      article_check(@article.save, "create")
+    else
+      article_check(@article.update(article_params), "create")
     end
   end
 
@@ -56,7 +56,7 @@ class ArticlesController < ApplicationController
       redirect_to articles_path, notice: "記事を編集しました"
       end
     else
-      redirect_to articles_path, notice: "バリデーションエラー"
+      redirect_to articles_path, notice: "投稿できませんでした"
     end
   end
 end
