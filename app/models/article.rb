@@ -4,5 +4,4 @@ class Article < ApplicationRecord
   with_options unless: :image? do
     validates :content, presence: true
   end
-
 end

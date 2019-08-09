@@ -16,7 +16,6 @@ class ArticlesController < ApplicationController
       @article = Article.new
     end
   end
-
   def confirm
     @article = Article.new(article_params)
   end
@@ -29,7 +28,6 @@ class ArticlesController < ApplicationController
       article_check(@article.update(article_params), "create")
     end
   end
-
   def edit
   end
   def update
