@@ -1,0 +1,42 @@
+<h1>編集画面</h1>
+<div id="article_form" class="box single">
+  <div class="column_title">投稿を作成</div>
+  <a href="" class="prof_icon"></a>
+  <%= form_with(model: @article, local: true) do |form| %>
+    <%= form.text_area :content, placeholder:"#{current_user.name}さん - 今なにしてる？" %>
+    <div id="img_field" onClick="$('#file').click()" >
+      <% if @article.image.url.present? %>
+        <%= image_tag(@article.image.url) %>
+      <% else %>
+        <i class="fas fa-image"></i><i class="fas fa-file-upload add"></i>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= form.file_field :image, style: "display:none;", id: "file"%>
+    </div>
+    <%= form.submit "投稿する", class:"btn_submit" %>
+    <%= form.submit "戻る", name: "back" %>
+  <% end %>
+</div>
+<script>
+$(function() {
+  $fileField = $('#file')
+  $($fileField).on('change', $fileField, function(e) {
+    file = e.target.files[0]
+    reader = new FileReader(),
+    $preview = $("#img_field");
+    reader.onload = (function(file) {
+      return function(e) {
+        $preview.empty();
+        $preview.append($('<img>').attr({
+          src: e.target.result,
+          width: "100%",
+          class: "preview",
+          title: file.name
+        }));
+      };
+    })(file);
+    reader.readAsDataURL(file);
+  });
+});
+</script>

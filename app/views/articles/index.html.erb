@@ -7,7 +7,12 @@
     </ul>
   </nav>
 </div>
+<div></div>
 <div id="center_content">
+  <% flash.each do |key,value| %>
+    <%= content_tag(:div, value, class: "#{key}") %>
+  <% end %>
+  <% if current_user.present? %>
   <div id="article_form" class="box">
     <div class="column_title">投稿を作成</div>
     <a href="" class="prof_icon"></a>
@@ -25,8 +30,6 @@
       <% end %>
       <div class="field">
         <%= form.label :image %>
-        <!-- 確認画面から新規作成画面に戻った時に、 -->
-        <!-- アップロードした画像を表示させるための記述 -->
         <%= image_tag(@article.image.url) if @article.image && @article.image.url %>
         <%= form.file_field :image %>
         <%= form.hidden_field :image_cache %>
@@ -34,12 +37,15 @@
       <%= form.submit "投稿する", class:"btn_submit" %>
     <% end %>
   </div>
+  <% end %>
 
   <div id="logs">
     <ul>
     <% @articles.each do |log| %>
       <li class="box">
-        <div class="head"><%= @users.find_by(id: log.user_id).name %></div>
+        <div class="head">
+          <div class="article_name"><%= @users.find_by(id: log.user_id).name %></div>
+        </div>
         <div class="content">
           <div class="comment"><%= simple_format(log.content) %></div>
           <% if log.image? %>
@@ -47,6 +53,12 @@
             <%= image_tag log.image.url %>
           </div>
           <% end %>
+        </div>
+        <div class="article_menu">
+          <ul>
+            <li><%= link_to "編集", edit_article_path(log.id) %></li>
+            <li><%= link_to "削除", article_path(log.id), method: :delete %></li>
+          </ul>
         </div>
       </li>
     <% end %>
@@ -61,3 +73,14 @@
   </ul>
   <div class="box">右カラム</div>
 </div>
+<script type="text/javascript">
+  $(function() {
+    $('.article_menu_btn').darkTooltip({
+      opacity:1,
+      trigger:'click',
+      animation:'fadeIn',
+      gravity:'south',
+      theme:'light'
+    });
+  });
+</script>

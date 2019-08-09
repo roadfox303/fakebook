@@ -11,6 +11,9 @@
  * It is generally better to create a new file per style scope.
  *
  *= require bootstrap/dist/css/bootstrap.min
+ *= require normalize.css
+ *= require darktooltip.css
+ *= require modaal.css
  *= require_tree .
  *= require_self
  */
@@ -59,7 +62,7 @@ body{
 .column_title{
   display: block;
   padding: 10px;
-  color: #1d2129;
+  color: #616770;
   background-color: #f5f6f7;
   border-bottom: 1px solid #dddfe2;
   border-radius: 3px 3px 0 0;
@@ -68,4 +71,11 @@ body{
 textarea:focus {
   outline: 0;
   border-color: #ffffff;
+}
+.dark-tooltip{
+  border-radius: 3px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+}
+.tip{
+  display: none;
 }

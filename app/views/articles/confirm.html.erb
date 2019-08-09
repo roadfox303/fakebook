@@ -8,7 +8,7 @@
   <%= form.submit "投稿する" %>
 <% end %>
 
-<%= form_with(model:@article, url:new_article_path, local:true, method:"get") do |form| %>
+<%= form_with(model:@article, url:articles_path, local:true, method:"get") do |form| %>
   <%= form.hidden_field :image_cache %>
   <%= form.submit "戻る", name: "back" %>
 <% end %>

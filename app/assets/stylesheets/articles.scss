@@ -3,18 +3,21 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #left_navi{
-  width: 20%;
+  box-sizing: border-box;
+  width: 17%;
   height: 100%;
   position:fixed;
   top:52px;
 }
 #center_content{
+  box-sizing: border-box;
   width: 50%;
   margin-left: 20%;
   float: left;
 }
 
 #right_content{
+  box-sizing: border-box;
   width:30%;
   float: left;
   padding-left: 10px;
@@ -67,6 +70,24 @@
   border-bottom: 1px solid #eeeeee;
   padding-bottom: 10px;
   margin: 0 10px;
+  overflow: hidden;
+}
+.article_name{
+  float: left;
+}
+.article_menu{
+  border-top: 1px solid #eeeeee;
+  margin: 0px 10px 10px;
+  padding: 10px 0 0;
+  overflow: hidden;
+}
+.article_menu ul {
+  width: 100%;
+  display: table;
+}
+.article_menu li{
+  display: table-cell;
+  text-align: center;
 }
 #logs .comment{
   padding: 10px 10px;
@@ -85,4 +106,21 @@
 
 #logs .thumbnail img{
   width: 100%;
+}
+
+.single{
+  width: 50%;
+  margin: 0 auto;
+}
+#img_field{
+  width:100%;
+  height: auto;
+  margin: 0 auto;
+}
+#img_field img{
+  width: 100%;
+}
+#img_field img:hover{
+  cursor: pointer;
+  opacity: 0.75;
 }
