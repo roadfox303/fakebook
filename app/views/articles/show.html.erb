@@ -1,18 +1,74 @@
-<h1>詳細画面</h1>
-<div id="article_form" class="box single">
-  <div class="column_title">投稿内容</div>
-  <a href="" class="prof_icon"></a>
-    <%= simple_format(@article.content) %>
-    <% if @article.image? %>
-    <div id="img_field" >
-        <%= image_tag @article.image.url %>
-    </div>
-    <% end %>
-    <div class="article_menu">
-      <ul>
-        <li><%= link_to "戻る", articles_path %></li>
-        <li><%= link_to "編集", edit_article_path(@article.id) %></li>
-        <li><%= link_to "削除", article_path(@article.id), method: :delete %></li>
-      </ul>
-    </div>
+<h1>自分の投稿</h1>
+<div id="profile">
+  <div id="prof_left">
+    <a href="<%= edit_user_path %>">
+      <%= image_tag(current_user.image.url), class: 'resize' if current_user.image && current_user.image.url %>
+    </a>
+  </div>
+  <ul id="prof_right">
+    <li><%= current_user.name %></li>
+    <li><%= current_user.comment %></li>
+  </ul>
 </div>
+
+<div id="articles">
+  <ul>
+    <% @articles.each do |log| %>
+    <li>
+      <a href="<%= log.id %>">
+      </a>
+    </li>
+    <% end %>
+  </ul>
+</div>
+<script>
+  $(function() {
+    $(".resize").ajustImg();
+
+    function ajustImg(){
+      let img = $(this);
+      let box = img.parent();
+
+      let ajust = ajust_direction(box,img);
+      if (ajust == "x"){
+        img.css({'width':'100%'});
+      }else{
+        img.css({'height':'100%'});
+      }
+
+      function ajust_direction(b,i){
+        function aspect_ratio(object){
+          return object.width() / object.height();
+        }
+        let box_aspect = aspect_ratio(b);
+        let img_aspect = aspect_ratio(i);
+        let direction;
+        switch(true){
+          case box_aspect == 1:
+            if (img_aspect > 1){
+              direction = "y";
+            }
+            else{
+              direction = "x";
+            }
+            break;
+          case box_aspect > 1:
+            if (box_aspect > i){
+              direction = "x";
+            }else {
+              direction = "y";
+            };
+            break;
+          case box_aspect < 1:
+            if (box_aspect > img_aspect){
+              direction = "y";
+            }else {
+              direction = "x";
+            };
+            break;
+        }
+        return direction;
+      }
+    });
+  });
+</script>
